@@ -1,0 +1,33 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard.css' %}" >
+    <title>Document</title>
+</head>
+<body>
+    <a href="logout">Logout</a>
+    <div class="person-container">
+        <div class="person">
+          <img style="height: 173px; width: 173px;" src="{{doc.profile.url}}" alt="loading">
+        <div class="person-details">
+            <h1>Doctor dashboard</h1>
+            <p>UserName : {{doc.username}}</p>
+            <p> Name :  {{doc.first_name}} {{doc.last_name}}</p>
+            <p> Enail :{{doc.email}}</p>
+            <p>Designation : {{doc.user_type}}</p><br>
+            <h3>Address</h3>
+            <p>line : {{doc.line}}</p>
+            <p>City:{{doc.city}}</p>
+            <p>State:{{doc.state}}</p>
+            <p>pincode:{{doc.pincode}}</p>
+        </div>
+      </div>
+  </div>
+
+</body>
+</html>

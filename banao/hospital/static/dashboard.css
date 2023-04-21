@@ -1,0 +1,58 @@
+.person-container {
+    display: flex;
+    justify-content: left;
+    margin-left: 20%;
+    align-items: left;
+    margin-top: 50px;
+    background-color: #f1f1f1;
+    width: 75%;
+    position: absolute;
+}
+
+
+.person {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px;
+    max-width: 800px;
+
+}
+
+.person img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+
+.person-details {
+    margin-left: 20px;
+    text-align: left;
+    flex: 1;
+    padding: 50px;
+}
+
+.person-details h2 {
+    margin-bottom: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.person-details p {
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.2;
+}
+
+a{
+    display: inline-block;
+	background-color: #4CAF50;
+	color: white;
+	cursor: pointer;
+    right:0;
+    position: absolute;
+    padding: 10px;
+    text-decoration: none;
+}

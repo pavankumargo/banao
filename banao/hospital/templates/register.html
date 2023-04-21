@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'register.css' %}" >
+</head>
+<body>
+    <h1>Please Enter your details</h1>
+    <div class="center-square">
+    <form action="{% url 'register' %}" method="post" enctype="multipart/form-data" name="myForm">
+        {% csrf_token %}
+            <div class="row">
+                <label for="username">User Name:</label>
+                <input type="text" id="username" name="username" required>
+                
+
+                <label for="firstname">First Name:</label>
+                <input type="text" id="firstname" name="first_name" required>
+                
+            </div>
+            <div class="row">
+            </div>
+            <div class="row">
+                <label for="lastname">Last Name:</label>
+                <input type="text" id="lastname" name="last_name" required >
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required >
+            </div>
+
+            <div class="row">
+            </div>
+
+            <div class="row">
+                <label for="line">Line1:</label>
+                <input type="text" id="line" name="line" required >
+
+                <label for="city">city:</label>
+                <input type="text" id="city" name="city" required >
+
+            </div>
+            <div class="row">
+
+                <label for="state">State:</label>
+                <input type="text" name="state" id="state">
+
+                <label for="pincode">Pin code:</label>
+                <input type="number" name="pincode" id="pincode">
+            </div>
+            <div class="row">
+            </div>
+
+            <div class="row">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="password1"> Confirm Password:</label>
+                <input type="password" id="password1" name="password1" required oninput="validpass()">
+
+            </div>
+            <div class="row">
+                <span id="valid_pass"></span>
+            </div>
+
+            <div class="row">
+                <label for="user_type">Designation:</label>
+                <select class="user_type" name="user_type" id="user_type">
+                    <option value="Doctor">Doctor</option>
+                    <option value="Patient">Patient</option>
+                </select>
+
+                <div id="imagePreview" ></div>
+                <label for="pic">Profile Picture</label>
+                <input type="file" name="pic" id="file" onchange="return fileValidation()"><br>
+            </div>
+            <div class="submit">
+            <input type="submit" name="Submit">
+        </div>
+    </form>
+    </div>
+
+    <div>
+        {% for message in messages %}
+        <h3> {{message}}  </h3>
+        {% endfor %}
+</div>
+
+<script>
+    function validpass(){
+        var pa=document.getElementById("password").value;
+        var pa1=document.getElementById("password1").value;
+        if(pa!=pa1){
+            document.getElementById("valid_pass").innerHTML="Passwords do not match";
+        }else{
+            document.getElementById("valid_pass").innerHTML="";
+        }
+    }
+    function fileValidation() {
+            var fileInput =document.getElementById('file');
+             
+            var filePath = fileInput.value;
+         
+            var allowedExtensions =/(\.jpg|\.jpeg|\.png|\.gif)$/i;
+             
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Invalid file type');
+                fileInput.value = '';
+                document.getElementById('imagePreview').innerHTML='';
+                return false;
+            }
+            else
+            {
+             
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('imagePreview').innerHTML ='<img src="' + e.target.result+ '" style="width : 50px; height :50px;"/>';
+                    };
+                     
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            } 
+        }
+</script>
+
+</body>
+</html>
